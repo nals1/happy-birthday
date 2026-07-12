@@ -1,0 +1,32 @@
+from pathlib import Path
+html='''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Birthday Mail</title><style>
+body{margin:0;font-family:Arial,sans-serif;background:#ffd6ea;overflow:hidden}
+#intro,#card{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#card{display:none;background:#ffeaf4}
+.balloon{position:absolute;font-size:40px;animation:float 8s linear infinite}.b1{left:8%;}.b2{right:10%;animation-delay:2s}.heart{position:absolute;color:#ff5fa2;animation:float 10s linear infinite}
+@keyframes float{from{transform:translateY(120vh)}to{transform:translateY(-120vh)}}
+button{padding:16px 30px;border:none;border-radius:30px;background:#ff5fa2;color:#fff;font-size:22px;cursor:pointer;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.cake{font-size:90px}.candles{font-size:18px}
+.note{background:#fff;padding:28px;border-radius:22px;max-width:700px;width:90%;box-shadow:0 10px 30px rgba(0,0,0,.15);line-height:1.7}
+.sticker{position:absolute;width:120px;height:120px;border:3px dashed #ff8cbc;border-radius:18px;background:#fff8;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px}
+.s1{left:20px;top:20px}.s2{right:20px;top:20px}.s3{left:20px;bottom:20px}.s4{right:20px;bottom:20px}
+.music{margin-top:18px;padding-top:14px;border-top:1px solid #eee}
+</style></head><body>
+<div class="balloon b1">🎈</div><div class="balloon b2">🎈</div>
+<div class="heart" style="left:30%">💖</div><div class="heart" style="left:70%;animation-delay:3s">✨</div>
+<div id=intro>
+<div class="sticker s1">Put<br>Fuggler<br>PNG/GIF</div><div class="sticker s2">Put<br>Fuggler</div><div class="sticker s3">Put<br>Fuggler</div><div class="sticker s4">Put<br>Fuggler</div>
+<div class="cake">🎂</div><div class="candles">🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️<br>🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️</div>
+<h1>💌 You've got birthday mail! 💌</h1><button onclick="o()">🎀 Click Here 🎀</button></div>
+<div id=card><div class=note><h2>Haii!! 🎀💗</h2>
+<p>Happy 16th birthdayyy! 🥳🎉 I hope today is filled with so much love, laughter, and happiness. You deserve the sweetest day ever, hahaha (get it ’cause sweet 16 😭🩷).</p>
+<p>Thank you for being such an amazing person. 🫶 I’m really grateful I got to know you, and I hope this year brings you so many new memories, opportunities, and moments that make you genuinely happeee. ✨</p>
+<p>Keep being you, never let anyone dim your sparkle! 🌟 Can’t wait to see you achieve your dreams little by little. 💗</p>
+<p><b>Happy sweet 16!! 🎂🎀🤍</b></p>
+<div class=music>🎵 <b>Flaming Hot Cheetos — Clairo</b><br><a target=_blank href="https://www.youtube.com/results?search_query=Flaming+Hot+Cheetos+Clairo">Play on YouTube</a></div>
+</div></div>
+<script>function o(){intro.style.display='none';card.style.display='flex';}</script></body></html>'''
+path=Path('/mnt/data/index.html')
+path.write_text(html,encoding='utf-8')
+print(path)
