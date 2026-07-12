@@ -1,0 +1,38 @@
+from zipfile import ZipFile
+from pathlib import Path
+
+base=Path('/mnt/data/fuggler_birthday_site')
+(base/'images').mkdir(parents=True, exist_ok=True)
+
+html="""<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Birthday Mail</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="intro" class="screen">
+<div class="stick left">🦷<br><small>Place Fuggler PNG</small></div>
+<div class="stick right">🦷<br><small>Place Fuggler PNG</small></div>
+<div class="cake">🎂<div class="candles">🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️<br>🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️</div></div>
+<h1>💌 You've got birthday mail! 💌</h1>
+<button onclick="openMail()">🎀 Click Here 🎀</button>
+</div>
+<div id="card" class="hidden">
+<div class="letter">
+<h2>Haii!! 🎀💗</h2>
+<p>Happy 16th birthdayyy! 🥳🎉 I hope today is filled with so much love, laughter, and happiness. You deserve the sweetest day ever, hahaha (get it ’cause sweet 16 😭🩷).</p>
+<p>Thank you for being such an amazing person. 🫶 I’m really grateful I got to know you, and I hope this year brings you so many new memories, opportunities, and moments that make you genuinely happeee. ✨</p>
+<p>Keep being you, never let anyone dim your sparkle! 🌟 Can’t wait to see you achieve your dreams little by little. 💗</p>
+<p><b>Happy sweet 16!! 🎂🎀🤍</b></p>
+<div class="music">🎵 Flaming Hot Cheetos — Clairo<br><a target="_blank" href="https://www.youtube.com/results?search_query=Flaming+Hot+Cheetos+Clairo">Play on YouTube</a></div>
+</div></div>
+<script src="script.js"></script></body></html>"""
+css="""body{margin:0;font-family:Arial;background:#ffd6e7;overflow:hidden}.screen,.hidden{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;text-align:center}.hidden{display:none}.letter{background:#fff;padding:30px;max-width:700px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.15);animation:up .8s}.cake{font-size:70px}.candles{font-size:18px}.stick{position:absolute;top:40px;background:#fff8;padding:10px;border:2px dashed #ff69b4;border-radius:12px}.left{left:20px}.right{right:20px}button{padding:15px 30px;border:none;border-radius:30px;background:#ff5fa2;color:#fff;font-size:20px;cursor:pointer;animation:b 1.5s infinite}.music{margin-top:20px}@keyframes b{50%{transform:scale(1.08)}}@keyframes up{from{transform:translateY(40px);opacity:0}to{opacity:1}}"""
+js="""function openMail(){document.getElementById('intro').style.display='none';document.getElementById('card').style.display='flex';}"""
+(base/'index.html').write_text(html,encoding='utf-8')
+(base/'style.css').write_text(css,encoding='utf-8')
+(base/'script.js').write_text(js,encoding='utf-8')
+(base/'images'/'PUT_FUGGLERS_HERE.txt').write_text("Place your PNG/GIF Fuggler stickers in this folder.",encoding='utf-8')
+zip_path='/mnt/data/Fuggler_Birthday_Website.zip'
+with ZipFile(zip_path,'w') as z:
+    for p in base.rglob('*'):
+        z.write(p,p.relative_to(base))
+print(zip_path)
